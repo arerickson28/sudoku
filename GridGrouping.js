@@ -37,7 +37,7 @@ var GridGrouping = /** @class */ (function () {
     };
     GridGrouping.prototype.getColSpaces = function (groupingNum, grid) {
         var spaces = [];
-        for (var i = 0; i <= 9; i++) {
+        for (var i = 0; i < 9; i++) {
             spaces.push(grid[i][groupingNum]);
         }
         return spaces;

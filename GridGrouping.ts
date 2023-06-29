@@ -8,6 +8,8 @@
 //     }
 // }
 
+import { group } from "console";
+
 
 export default class GridGrouping {
 
@@ -47,7 +49,7 @@ export default class GridGrouping {
 
     getColSpaces(groupingNum: number, grid: number[][]): number[] {
         let spaces: number[] = []
-        for(let i=0; i<=9; i++) {
+        for(let i=0; i<9; i++) {
             spaces.push(grid[i][groupingNum])
         }
         return spaces

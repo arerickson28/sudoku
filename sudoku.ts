@@ -39,11 +39,25 @@ let testGrid = [
     9, 0, 0, 0, 0, 0, 0, 0, 0,
 ]
 
+let testGrid2 = [
+    [0, 2, 3, 4, 5, 6, 7, 8, 9],
+    [4, 5, 6, 0, 0, 0, 0, 0, 0],
+    [7, 8, 9, 0, 0, 0, 0, 0, 0],
+    [2, 0, 0, 0, 0, 0, 0, 0, 0],
+    [3, 0, 0, 0, 0, 0, 0, 0, 0],
+    [5, 0, 0, 0, 0, 0, 0, 0, 0],
+    [6, 0, 0, 0, 0, 0, 0, 0, 0],
+    [8, 0, 0, 0, 0, 0, 0, 0, 0],
+    [9, 0, 0, 0, 0, 0, 0, 0, 0],
+]
 
-
-let row0 = new GridGrouping(0, "row", grid2)
+let row0 = new GridGrouping(0, "row", testGrid2)
+let col0 = new GridGrouping(1, "col", testGrid2)
+let box0 = new GridGrouping(0, "box", testGrid2)
 
 console.log(row0)
+console.log(col0)
+console.log(box0)
 console.log("hi")
 
 // function getGridRows(grid) {
