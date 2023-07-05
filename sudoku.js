@@ -412,14 +412,12 @@ var coordinateRelations = {
     "79": [row8, col7, box8],
     "80": [row8, col8, box8]
 };
-var experimentCoorRelations = {};
-for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++)
-        experimentCoorRelations["".concat(i, ",").concat(j)] = [];
-}
-console.log("experimentCoorRelations", experimentCoorRelations);
-for (var i = 0; i < 81; i++) {
-}
+// let experimentCoorRelations = {}
+// for(let i=0; i<9; i++) {
+//     for(let j=0; j<9; j++)
+//     experimentCoorRelations[`${i},${j}`] = []
+// }
+// console.log("experimentCoorRelations", experimentCoorRelations)
 var coorRelations = {
     '0,0': [],
     '0,1': [],
@@ -507,6 +505,46 @@ for (var _i = 0, _a = Object.keys(coorRelations); _i < _a.length; _i++) {
     var coor = _a[_i];
     var rowNum = coor.split(",")[0];
     coorRelations[coor].push("row".concat(rowNum));
+}
+for (var _b = 0, _c = Object.keys(coorRelations); _b < _c.length; _b++) {
+    var coor = _c[_b];
+    var colNum = coor.split(",")[1];
+    coorRelations[coor].push("col".concat(colNum));
+}
+for (var _d = 0, _e = Object.keys(coorRelations); _d < _e.length; _d++) {
+    var coor = _e[_d];
+    var rowNum = parseInt(coor.split(",")[0]);
+    var colNum = parseInt(coor.split(",")[1]);
+    if (rowNum >= 0 && rowNum < 3 && colNum >= 0 && colNum < 3) {
+        coorRelations[coor].push("box".concat(0));
+    }
+    else if (rowNum >= 0 && rowNum <= 3 && colNum >= 3 && colNum <= 6) {
+        coorRelations[coor].push("box".concat(1));
+    }
+    else if (rowNum >= 0 && rowNum < 3 && colNum >= 6 && colNum < 9) {
+        coorRelations[coor].push("box".concat(2));
+    }
+    else if (rowNum >= 3 && rowNum < 6 && colNum >= 0 && colNum < 3) {
+        coorRelations[coor].push("box".concat(3));
+    }
+    else if (rowNum >= 3 && rowNum < 6 && colNum >= 3 && colNum < 6) {
+        coorRelations[coor].push("box".concat(4));
+    }
+    else if (rowNum >= 3 && rowNum < 6 && colNum >= 6 && colNum < 9) {
+        coorRelations[coor].push("box".concat(5));
+    }
+    else if (rowNum >= 6 && rowNum < 9 && colNum >= 0 && colNum < 3) {
+        coorRelations[coor].push("box".concat(6));
+    }
+    else if (rowNum >= 6 && rowNum < 9 && colNum >= 3 && colNum < 6) {
+        coorRelations[coor].push("box".concat(7));
+    }
+    else if (rowNum >= 6 && rowNum < 9 && colNum >= 6 && colNum < 9) {
+        coorRelations[coor].push("box".concat(8));
+    }
+    else {
+        console.log("error");
+    }
 }
 console.log(coorRelations);
 // call row, columns, and box4s "indicie groupings"

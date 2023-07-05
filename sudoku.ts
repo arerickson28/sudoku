@@ -440,17 +440,15 @@ const coordinateRelations = {
     "80":[row8, col8, box8]
 }
 
-let experimentCoorRelations = {}
-for(let i=0; i<9; i++) {
-    for(let j=0; j<9; j++)
-    experimentCoorRelations[`${i},${j}`] = []
-}
+// let experimentCoorRelations = {}
+// for(let i=0; i<9; i++) {
+//     for(let j=0; j<9; j++)
+//     experimentCoorRelations[`${i},${j}`] = []
+// }
 
-console.log("experimentCoorRelations", experimentCoorRelations)
+// console.log("experimentCoorRelations", experimentCoorRelations)
 
-for(let i=0; i<81; i++) {
 
-}
 
 
 
@@ -544,7 +542,40 @@ let coorRelations =  {
     coorRelations[coor].push(`row${rowNum}`)
   }
 
-  console.log(coorRelations)
+  
+
+  for(let coor of Object.keys(coorRelations)) {
+    let colNum = coor.split(",")[1]
+    coorRelations[coor].push(`col${colNum}`)
+}
+
+for (let coor of Object.keys(coorRelations)) {
+    let rowNum = parseInt(coor.split(",")[0])
+    let colNum = parseInt(coor.split(",")[1])
+    if(rowNum >= 0 && rowNum <3  && colNum >= 0 && colNum <3) {
+        coorRelations[coor].push(`box${0}`)
+    } else if (rowNum >=0 && rowNum <= 3 && colNum >= 3 && colNum <=6) {
+        coorRelations[coor].push(`box${1}`)
+    } else if (rowNum >= 0 && rowNum < 3  && colNum >= 6 && colNum <9) {
+        coorRelations[coor].push(`box${2}`)
+    } else if (rowNum >= 3 && rowNum <6  && colNum >= 0 && colNum <3) {
+        coorRelations[coor].push(`box${3}`)
+    } else if (rowNum >= 3 && rowNum <6  && colNum >= 3 && colNum <6) {
+        coorRelations[coor].push(`box${4}`)
+    } else if (rowNum >= 3 && rowNum <6  && colNum >= 6 && colNum <9) {
+        coorRelations[coor].push(`box${5}`)
+    } else if (rowNum >= 6 && rowNum <9  && colNum >= 0 && colNum <3) {
+        coorRelations[coor].push(`box${6}`)
+    } else if (rowNum >= 6 && rowNum <9  && colNum >= 3 && colNum <6) {
+        coorRelations[coor].push(`box${7}`)
+    } else if (rowNum >= 6 && rowNum <9  && colNum >= 6 && colNum <9) {
+        coorRelations[coor].push(`box${8}`)
+    } else {
+        console.log("error")
+    }
+}
+
+console.log(coorRelations)
 
 // call row, columns, and box4s "indicie groupings"
 
@@ -644,3 +675,170 @@ let spaceIsAvailbleForNumberBooleansList = []
 // checkGroupingForNumber(row0, 1)
 // console.log(grid2)
 
+let finalCoorRelations = {
+    '0,0': [ row0, col0, box0 ],
+    '0,1': [ row0, col1, box0 ],
+    '0,2': [ row0, col2, box0 ],
+    '0,3': [ row0, col3, box1 ],
+    '0,4': [ row0, col4, box1 ],
+    '0,5': [ row0, col5, box1 ],
+    '0,6': [ row0, col6, box1 ],
+    '0,7': [ row0, col7, box2 ],
+    '0,8': [ row0, col8, box2 ],
+    '1,0': [ row1, col0, box0 ],
+    '1,1': [ row1, col1, box0 ],
+    '1,2': [ row1, col2, box0 ],
+    '1,3': [ row1, col3, box1 ],
+    '1,4': [ row1, col4, box1 ],
+    '1,5': [ row1, col5, box1 ],
+    '1,6': [ row1, col6, box1 ],
+    '1,7': [ row1, col7, box2 ],
+    '1,8': [ row1, col8, box2 ],
+    '2,0': [ row2, col0, box0 ],
+    '2,1': [ row2, col1, box0 ],
+    '2,2': [ row2, col2, box0 ],
+    '2,3': [ row2, col3, box1 ],
+    '2,4': [ row2, col4, box1 ],
+    '2,5': [ row2, col5, box1 ],
+    '2,6': [ row2, col6, box1 ],
+    '2,7': [ row2, col7, box2 ],
+    '2,8': [ row2, col8, box2 ],
+    '3,0': [ row3, col0, box3 ],
+    '3,1': [ row3, col1, box3 ],
+    '3,2': [ row3, col2, box3 ],
+    '3,3': [ row3, col3, box1 ],
+    '3,4': [ row3, col4, box1 ],
+    '3,5': [ row3, col5, box1 ],
+    '3,6': [ row3, col6, box1 ],
+    '3,7': [ row3, col7, box5 ],
+    '3,8': [ row3, col8, box5 ],
+    '4,0': [ row4, col0, box3 ],
+    '4,1': [ row4, col1, box3 ],
+    '4,2': [ row4, col2, box3 ],
+    '4,3': [ row4, col3, box4 ],
+    '4,4': [ row4, col4, box4 ],
+    '4,5': [ row4, col5, box4 ],
+    '4,6': [ row4, col6, box5 ],
+    '4,7': [ row4, col7, box5 ],
+    '4,8': [ row4, col8, box5 ],
+    '5,0': [ row5, col0, box3 ],
+    '5,1': [ row5, col1, box3 ],
+    '5,2': [ row5, col2, box3 ],
+    '5,3': [ row5, col3, box4 ],
+    '5,4': [ row5, col4, box4 ],
+    '5,5': [ row5, col5, box4 ],
+    '5,6': [ row5, col6, box5 ],
+    '5,7': [ row5, col7, box5 ],
+    '5,8': [ row5, col8, box5 ],
+    '6,0': [ row6, col0, box6 ],
+    '6,1': [ row6, col1, box6 ],
+    '6,2': [ row6, col2, box6 ],
+    '6,3': [ row6, col3, box7 ],
+    '6,4': [ row6, col4, box7 ],
+    '6,5': [ row6, col5, box7 ],
+    '6,6': [ row6, col6, box8 ],
+    '6,7': [ row6, col7, box8 ],
+    '6,8': [ row6, col8, box8 ],
+    '7,0': [ row7, col0, box6 ],
+    '7,1': [ row7, col1, box6 ],
+    '7,2': [ row7, col2, box6 ],
+    '7,3': [ row7, col3, box7 ],
+    '7,4': [ row7, col4, box7 ],
+    '7,5': [ row7, col5, box7 ],
+    '7,6': [ row7, col6, box8 ],
+    '7,7': [ row7, col7, box8 ],
+    '7,8': [ row7, col8, box8 ],
+    '8,0': [ row8, col0, box6 ],
+    '8,1': [ row8, col1, box6 ],
+    '8,2': [ row8, col2, box6 ],
+    '8,3': [ row8, col3, box7 ],
+    '8,4': [ row8, col4, box7 ],
+    '8,5': [ row8, col5, box7 ],
+    '8,6': [ row8, col6, box8 ],
+    '8,7': [ row8, col7, box8 ],
+    '8,8': [ row8, col8, box8 ]
+  }
+
+  let iMightWantThis = {
+    '0,0': [ 'row0', 'col0', 'box0' ],
+    '0,1': [ 'row0', 'col1', 'box0' ],
+    '0,2': [ 'row0', 'col2', 'box0' ],
+    '0,3': [ 'row0', 'col3', 'box1' ],
+    '0,4': [ 'row0', 'col4', 'box1' ],
+    '0,5': [ 'row0', 'col5', 'box1' ],
+    '0,6': [ 'row0', 'col6', 'box1' ],
+    '0,7': [ 'row0', 'col7', 'box2' ],
+    '0,8': [ 'row0', 'col8', 'box2' ],
+    '1,0': [ 'row1', 'col0', 'box0' ],
+    '1,1': [ 'row1', 'col1', 'box0' ],
+    '1,2': [ 'row1', 'col2', 'box0' ],
+    '1,3': [ 'row1', 'col3', 'box1' ],
+    '1,4': [ 'row1', 'col4', 'box1' ],
+    '1,5': [ 'row1', 'col5', 'box1' ],
+    '1,6': [ 'row1', 'col6', 'box1' ],
+    '1,7': [ 'row1', 'col7', 'box2' ],
+    '1,8': [ 'row1', 'col8', 'box2' ],
+    '2,0': [ 'row2', 'col0', 'box0' ],
+    '2,1': [ 'row2', 'col1', 'box0' ],
+    '2,2': [ 'row2', 'col2', 'box0' ],
+    '2,3': [ 'row2', 'col3', 'box1' ],
+    '2,4': [ 'row2', 'col4', 'box1' ],
+    '2,5': [ 'row2', 'col5', 'box1' ],
+    '2,6': [ 'row2', 'col6', 'box1' ],
+    '2,7': [ 'row2', 'col7', 'box2' ],
+    '2,8': [ 'row2', 'col8', 'box2' ],
+    '3,0': [ 'row3', 'col0', 'box3' ],
+    '3,1': [ 'row3', 'col1', 'box3' ],
+    '3,2': [ 'row3', 'col2', 'box3' ],
+    '3,3': [ 'row3', 'col3', 'box1' ],
+    '3,4': [ 'row3', 'col4', 'box1' ],
+    '3,5': [ 'row3', 'col5', 'box1' ],
+    '3,6': [ 'row3', 'col6', 'box1' ],
+    '3,7': [ 'row3', 'col7', 'box5' ],
+    '3,8': [ 'row3', 'col8', 'box5' ],
+    '4,0': [ 'row4', 'col0', 'box3' ],
+    '4,1': [ 'row4', 'col1', 'box3' ],
+    '4,2': [ 'row4', 'col2', 'box3' ],
+    '4,3': [ 'row4', 'col3', 'box4' ],
+    '4,4': [ 'row4', 'col4', 'box4' ],
+    '4,5': [ 'row4', 'col5', 'box4' ],
+    '4,6': [ 'row4', 'col6', 'box5' ],
+    '4,7': [ 'row4', 'col7', 'box5' ],
+    '4,8': [ 'row4', 'col8', 'box5' ],
+    '5,0': [ 'row5', 'col0', 'box3' ],
+    '5,1': [ 'row5', 'col1', 'box3' ],
+    '5,2': [ 'row5', 'col2', 'box3' ],
+    '5,3': [ 'row5', 'col3', 'box4' ],
+    '5,4': [ 'row5', 'col4', 'box4' ],
+    '5,5': [ 'row5', 'col5', 'box4' ],
+    '5,6': [ 'row5', 'col6', 'box5' ],
+    '5,7': [ 'row5', 'col7', 'box5' ],
+    '5,8': [ 'row5', 'col8', 'box5' ],
+    '6,0': [ 'row6', 'col0', 'box6' ],
+    '6,1': [ 'row6', 'col1', 'box6' ],
+    '6,2': [ 'row6', 'col2', 'box6' ],
+    '6,3': [ 'row6', 'col3', 'box7' ],
+    '6,4': [ 'row6', 'col4', 'box7' ],
+    '6,5': [ 'row6', 'col5', 'box7' ],
+    '6,6': [ 'row6', 'col6', 'box8' ],
+    '6,7': [ 'row6', 'col7', 'box8' ],
+    '6,8': [ 'row6', 'col8', 'box8' ],
+    '7,0': [ 'row7', 'col0', 'box6' ],
+    '7,1': [ 'row7', 'col1', 'box6' ],
+    '7,2': [ 'row7', 'col2', 'box6' ],
+    '7,3': [ 'row7', 'col3', 'box7' ],
+    '7,4': [ 'row7', 'col4', 'box7' ],
+    '7,5': [ 'row7', 'col5', 'box7' ],
+    '7,6': [ 'row7', 'col6', 'box8' ],
+    '7,7': [ 'row7', 'col7', 'box8' ],
+    '7,8': [ 'row7', 'col8', 'box8' ],
+    '8,0': [ 'row8', 'col0', 'box6' ],
+    '8,1': [ 'row8', 'col1', 'box6' ],
+    '8,2': [ 'row8', 'col2', 'box6' ],
+    '8,3': [ 'row8', 'col3', 'box7' ],
+    '8,4': [ 'row8', 'col4', 'box7' ],
+    '8,5': [ 'row8', 'col5', 'box7' ],
+    '8,6': [ 'row8', 'col6', 'box8' ],
+    '8,7': [ 'row8', 'col7', 'box8' ],
+    '8,8': [ 'row8', 'col8', 'box8' ]
+  }
