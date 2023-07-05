@@ -14,14 +14,14 @@
 export default class GridGrouping {
 
     name: string;
-    spaceCoordinates: String[]
+    spaceCoorAvail: String[]
     spaceValues: number[]
     numbersNeeded: number[]
     numbersFulfilled: number[]
 
     constructor(groupingNum: number, groupingType: string, grid: number[][]) {
         this.name = groupingType + groupingNum
-        this.spaceCoordinates = this.getSpaces("coor", groupingNum, groupingType, grid)
+        this.spaceCoorAvail = this.getSpaces("coor", groupingNum, groupingType, grid)
         this.spaceValues = this.getSpaces("values", groupingNum, groupingType, grid)
         this.numbersNeeded = this.getNumbersNeeded(this.spaceValues)
         this.numbersFulfilled = this.getNumbersFulfilled(this.spaceValues)
