@@ -13,7 +13,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var GridGrouping = /** @class */ (function () {
     function GridGrouping(groupingNum, groupingType, grid) {
         this.name = groupingType + groupingNum;
-        this.spaceCoorAvail = this.getSpaces("coor", groupingNum, groupingType, grid);
+        this.spaceCoor = this.getSpaces("coor", groupingNum, groupingType, grid);
+        this.spaceCoorAvail = this.getSpaceCoorAvail(this.spaceCoor, grid);
         this.spaceValues = this.getSpaces("values", groupingNum, groupingType, grid);
         this.numbersNeeded = this.getNumbersNeeded(this.spaceValues);
         this.numbersFulfilled = this.getNumbersFulfilled(this.spaceValues);
@@ -43,6 +44,7 @@ var GridGrouping = /** @class */ (function () {
                 return grid[groupingNum];
             case "coor":
                 return [
+                    "".concat(groupingNum, ",0"),
                     "".concat(groupingNum, ",1"),
                     "".concat(groupingNum, ",2"),
                     "".concat(groupingNum, ",3"),
@@ -341,6 +343,18 @@ var GridGrouping = /** @class */ (function () {
                 console.log("error");
                 return [];
         }
+    };
+    GridGrouping.prototype.getSpaceCoorAvail = function (spaceCoor, grid) {
+        var spaceCoorAvail = [];
+        for (var _i = 0, spaceCoor_1 = spaceCoor; _i < spaceCoor_1.length; _i++) {
+            var coor = spaceCoor_1[_i];
+            var coorA = parseInt(coor.split(",")[0]);
+            var coorB = parseInt(coor.split(",")[1]);
+            if (grid[coorA][coorB] == 0) {
+                spaceCoorAvail.push(coor);
+            }
+        }
+        return spaceCoorAvail;
     };
     GridGrouping.prototype.getNumbersNeeded = function (spaces) {
         var numbersNeeded = [];

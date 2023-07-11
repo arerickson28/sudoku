@@ -197,8 +197,8 @@ let coorRelations: Object = {
 
 
 function checkEightOutOfNine(grouping: GridGrouping) {
-    if (grouping.spaceCoorAvail.length == 1 && grouping.numbersNeeded.length == 1) {
-        gridAndPop(grouping.spaceCoorAvail[0], grouping.numbersNeeded[0])
+    if (grouping.spaceCoor.length == 1 && grouping.numbersNeeded.length == 1) {
+        gridAndPop(grouping.spaceCoor[0], grouping.numbersNeeded[0])
    }
 
 }
@@ -215,6 +215,7 @@ function gridAndPop(coor: String, number: number) {
 
 
 let spaceIsAvailbleForNumberBooleansList: String[] = []
+console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
 
 
 
@@ -225,7 +226,7 @@ let spaceIsAvailbleForNumberBooleansList: String[] = []
 function checkGroupingForNumber(grouping: GridGrouping, number: number) {
     console.log(`grouping: ${grouping.name}`)
   
-    for(let space of grouping.spaceCoorAvail) {
+    for(let space of grouping.spaceCoor) {
         checkSpaceForNumber(space, number)
     }
 
@@ -241,7 +242,7 @@ function checkGroupingForNumber(grouping: GridGrouping, number: number) {
 function checkSpaceForNumber(coor: String, number: number) {
     console.log(`checking coor: ${coor} for number: ${number}`)
     const relationList = coorRelations[`${coor}`]
-    // console.log(relationList)
+    console.log(relationList)
     // let spaceIsAvailbleForNumberBooleansList = []
 
     for(let relation of relationList) {
@@ -254,12 +255,11 @@ function checkSpaceForNumber(coor: String, number: number) {
 }
 
 
-for(let row of rows) {
-    let numNeeded = row.numbersNeeded
+    let numNeeded = row0.numbersNeeded
     for (let num of numNeeded) {
-        checkGroupingForNumber(row, num)
+        checkGroupingForNumber(row0, num)
     }
-}
+
 
 
 

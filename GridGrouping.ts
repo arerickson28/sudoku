@@ -14,6 +14,7 @@
 export default class GridGrouping {
 
     name: string;
+    spaceCoor: String[]
     spaceCoorAvail: String[]
     spaceValues: number[]
     numbersNeeded: number[]
@@ -21,7 +22,8 @@ export default class GridGrouping {
 
     constructor(groupingNum: number, groupingType: string, grid: number[][]) {
         this.name = groupingType + groupingNum
-        this.spaceCoorAvail = this.getSpaces("coor", groupingNum, groupingType, grid)
+        this.spaceCoor = this.getSpaces("coor", groupingNum, groupingType, grid)
+        this.spaceCoorAvail = this.getSpaceCoorAvail(this.spaceCoor, grid)
         this.spaceValues = this.getSpaces("values", groupingNum, groupingType, grid)
         this.numbersNeeded = this.getNumbersNeeded(this.spaceValues)
         this.numbersFulfilled = this.getNumbersFulfilled(this.spaceValues)
@@ -56,6 +58,7 @@ export default class GridGrouping {
                 return grid[groupingNum]
             case "coor":
                 return [
+                    `${groupingNum},0`,
                     `${groupingNum},1`,
                     `${groupingNum},2`,
                     `${groupingNum},3`,
@@ -372,6 +375,18 @@ export default class GridGrouping {
               console.log("error")
               return []
           }
+    }
+
+    getSpaceCoorAvail(spaceCoor: String[], grid: number[][]): String[] {
+        let spaceCoorAvail: String[] = []
+        for(let coor of spaceCoor) {
+            let coorA = parseInt(coor.split(",")[0])
+            let coorB = parseInt(coor.split(",")[1])
+            if(grid[coorA][coorB] == 0) {
+                spaceCoorAvail.push(coor)
+            }
+        }
+        return spaceCoorAvail
     }
 
     getNumbersNeeded(spaces: number[]) {

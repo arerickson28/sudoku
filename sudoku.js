@@ -166,8 +166,8 @@ var coorRelations = {
 //spaceAvailable.pop(space)
 //numbersAbvailable.pop(getIndex(number))
 function checkEightOutOfNine(grouping) {
-    if (grouping.spaceCoorAvail.length == 1 && grouping.numbersNeeded.length == 1) {
-        gridAndPop(grouping.spaceCoorAvail[0], grouping.numbersNeeded[0]);
+    if (grouping.spaceCoor.length == 1 && grouping.numbersNeeded.length == 1) {
+        gridAndPop(grouping.spaceCoor[0], grouping.numbersNeeded[0]);
     }
 }
 function gridAndPop(coor, number) {
@@ -181,10 +181,11 @@ function gridAndPop(coor, number) {
     }
 }
 var spaceIsAvailbleForNumberBooleansList = [];
+console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList);
 //take number, check all spaces in that row
 function checkGroupingForNumber(grouping, number) {
     console.log("grouping: ".concat(grouping.name));
-    for (var _i = 0, _a = grouping.spaceCoorAvail; _i < _a.length; _i++) {
+    for (var _i = 0, _a = grouping.spaceCoor; _i < _a.length; _i++) {
         var space = _a[_i];
         checkSpaceForNumber(space, number);
     }
@@ -199,7 +200,7 @@ function checkGroupingForNumber(grouping, number) {
 function checkSpaceForNumber(coor, number) {
     console.log("checking coor: ".concat(coor, " for number: ").concat(number));
     var relationList = coorRelations["".concat(coor)];
-    // console.log(relationList)
+    console.log(relationList);
     // let spaceIsAvailbleForNumberBooleansList = []
     for (var _i = 0, relationList_1 = relationList; _i < relationList_1.length; _i++) {
         var relation = relationList_1[_i];
@@ -209,13 +210,10 @@ function checkSpaceForNumber(coor, number) {
     }
     return;
 }
-for (var _i = 0, rows_1 = rows; _i < rows_1.length; _i++) {
-    var row = rows_1[_i];
-    var numNeeded = row.numbersNeeded;
-    for (var _a = 0, numNeeded_1 = numNeeded; _a < numNeeded_1.length; _a++) {
-        var num = numNeeded_1[_a];
-        checkGroupingForNumber(row, num);
-    }
+var numNeeded = row0.numbersNeeded;
+for (var _i = 0, numNeeded_1 = numNeeded; _i < numNeeded_1.length; _i++) {
+    var num = numNeeded_1[_i];
+    checkGroupingForNumber(row0, num);
 }
 // checkSpaceForNumber("0", 1)
 // checkGroupingForNumber(row0, 1)
