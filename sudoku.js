@@ -185,11 +185,14 @@ console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBoo
 //take number, check all spaces in that row
 function checkGroupingForNumber(grouping, number) {
     console.log("grouping: ".concat(grouping.name));
-    for (var _i = 0, _a = grouping.spaceCoor; _i < _a.length; _i++) {
+    for (var _i = 0, _a = grouping.spaceCoorAvail; _i < _a.length; _i++) {
         var space = _a[_i];
         checkSpaceForNumber(space, number);
     }
-    if (spaceIsAvailbleForNumberBooleansList.length == 1) {
+    function getDistincts(arr) {
+        return arr.filter(function (item, index) { return arr.indexOf(item) === index; });
+    }
+    if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
         //fill space with that number, yay!
         console.log("grouping: ".concat(grouping.name, " fulfills space: ").concat(spaceIsAvailbleForNumberBooleansList[0], " with number: ").concat(number));
     }
@@ -201,20 +204,25 @@ function checkSpaceForNumber(coor, number) {
     console.log("checking coor: ".concat(coor, " for number: ").concat(number));
     var relationList = coorRelations["".concat(coor)];
     console.log(relationList);
-    // let spaceIsAvailbleForNumberBooleansList = []
+    spaceIsAvailbleForNumberBooleansList = [];
     for (var _i = 0, relationList_1 = relationList; _i < relationList_1.length; _i++) {
         var relation = relationList_1[_i];
         if (!relation.numbersFulfilled.includes(number)) {
             spaceIsAvailbleForNumberBooleansList.push(coor);
+            console.log("pushed", coor);
         }
     }
     return;
 }
 var numNeeded = row0.numbersNeeded;
+var spaceCoorAvail = row0.spaceCoorAvail;
+console.log(numNeeded);
+console.log(spaceCoorAvail);
 for (var _i = 0, numNeeded_1 = numNeeded; _i < numNeeded_1.length; _i++) {
     var num = numNeeded_1[_i];
     checkGroupingForNumber(row0, num);
 }
+console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList);
 // checkSpaceForNumber("0", 1)
 // checkGroupingForNumber(row0, 1)
 // console.log(grid2)

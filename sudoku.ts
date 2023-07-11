@@ -226,11 +226,16 @@ console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBoo
 function checkGroupingForNumber(grouping: GridGrouping, number: number) {
     console.log(`grouping: ${grouping.name}`)
   
-    for(let space of grouping.spaceCoor) {
+    for(let space of grouping.spaceCoorAvail) {
         checkSpaceForNumber(space, number)
     }
 
-    if (spaceIsAvailbleForNumberBooleansList.length == 1) {
+    function getDistincts(arr: String[]) {
+        return arr.filter((item,
+            index) => arr.indexOf(item) === index);
+    }
+
+    if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
         //fill space with that number, yay!
         console.log(`grouping: ${grouping.name} fulfills space: ${spaceIsAvailbleForNumberBooleansList[0]} with number: ${number}`)
     } else {
@@ -243,11 +248,12 @@ function checkSpaceForNumber(coor: String, number: number) {
     console.log(`checking coor: ${coor} for number: ${number}`)
     const relationList = coorRelations[`${coor}`]
     console.log(relationList)
-    // let spaceIsAvailbleForNumberBooleansList = []
+    spaceIsAvailbleForNumberBooleansList = []
 
     for(let relation of relationList) {
         if (!relation.numbersFulfilled.includes(number)) {
             spaceIsAvailbleForNumberBooleansList.push(coor)
+            console.log("pushed", coor)
         }
     }
 
@@ -256,12 +262,15 @@ function checkSpaceForNumber(coor: String, number: number) {
 
 
     let numNeeded = row0.numbersNeeded
+    let spaceCoorAvail = row0.spaceCoorAvail
+    console.log(numNeeded)
+    console.log(spaceCoorAvail)
     for (let num of numNeeded) {
         checkGroupingForNumber(row0, num)
     }
 
 
-
+    console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
 
 
 // checkSpaceForNumber("0", 1)
