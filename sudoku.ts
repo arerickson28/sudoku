@@ -1,19 +1,20 @@
 
+import { ScriptSnapshot } from "typescript"
 import GridGrouping from "./GridGrouping"
 
 
 
 
 let testGrid: number[][] = [
-    [0, 2, 3, 4, 5, 6, 7, 8, 9],
-    [4, 5, 6, 0, 0, 0, 0, 0, 0],
-    [7, 8, 9, 0, 0, 0, 0, 0, 0],
-    [2, 0, 0, 0, 0, 0, 0, 0, 0],
-    [3, 0, 0, 0, 0, 0, 0, 0, 0],
-    [5, 0, 0, 0, 0, 0, 0, 0, 0],
-    [6, 0, 0, 0, 0, 0, 0, 0, 0],
-    [8, 0, 0, 0, 0, 0, 0, 0, 0],
-    [9, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 5, 1, 0, 8, 0, 3],
+    [0, 0, 5, 0, 6, 4, 0, 9, 0],
+    [9, 0, 0, 7, 0, 2, 0, 0, 6],
+    [8, 0, 3, 0, 4, 5, 6, 0, 0],
+    [2, 0, 9, 0, 0, 0, 4, 0, 7],
+    [0, 0, 4, 6, 2, 0, 9, 0, 8],
+    [7, 0, 0, 1, 0, 3, 0, 0, 4],
+    [0, 3, 0, 2, 9, 0, 1, 0, 0],
+    [1, 0, 2, 0, 7, 8, 0, 0, 0],
 ]
 
 let grid: number[][] = [
@@ -29,35 +30,75 @@ let grid: number[][] = [
 ]
 
 
-let row0 = new GridGrouping(0, "row", grid)
-let row1 = new GridGrouping(1, "row", grid)
-let row2 = new GridGrouping(2, "row", grid)
-let row3 = new GridGrouping(3, "row", grid)
-let row4 = new GridGrouping(4, "row", grid)
-let row5 = new GridGrouping(5, "row", grid)
-let row6 = new GridGrouping(6, "row", grid)
-let row7 = new GridGrouping(7, "row", grid)
-let row8 = new GridGrouping(8, "row", grid)
+let emptyGrid: number[][] = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
 
-let col0 = new GridGrouping(0, "col", grid)
-let col1 = new GridGrouping(1, "col", grid)
-let col2 = new GridGrouping(2, "col", grid)
-let col3 = new GridGrouping(3, "col", grid)
-let col4 = new GridGrouping(4, "col", grid)
-let col5 = new GridGrouping(5, "col", grid)
-let col6 = new GridGrouping(6, "col", grid)
-let col7 = new GridGrouping(7, "col", grid)
-let col8 = new GridGrouping(8, "col", grid)
+let easyGrid: number[][] = [
+    [0, 0, 0, 0, 0, 0, 2, 0, 0],
+    [0, 8, 0, 0, 0, 7, 0, 9, 0],
+    [6, 0, 2, 0, 0, 0, 5, 0, 0],
+    [0, 7, 0, 0, 6, 0, 0, 0, 0],
+    [0, 0, 0, 9, 0, 1, 0, 0, 0],
+    [0, 0, 0, 0, 2, 0, 0, 4, 0],
+    [0, 0, 5, 0, 0, 0, 6, 0, 3],
+    [0, 9, 0, 4, 0, 0, 0, 7, 0],
+    [0, 0, 6, 0, 0, 0, 0, 0, 0],
+]
 
-let box0 = new GridGrouping(0, "box", grid)
-let box1 = new GridGrouping(1, "box", grid)
-let box2 = new GridGrouping(2, "box", grid)
-let box3 = new GridGrouping(3, "box", grid)
-let box4 = new GridGrouping(4, "box", grid)
-let box5 = new GridGrouping(5, "box", grid)
-let box6 = new GridGrouping(6, "box", grid)
-let box7 = new GridGrouping(7, "box", grid)
-let box8 = new GridGrouping(8, "box", grid)
+let otherGrid: number[][] = [
+    [0, 5, 2, 0, 0, 6, 0, 0, 0],
+    [1, 6, 0, 9, 0, 0, 0, 0, 4],
+    [0, 4, 9, 8, 0, 3, 6, 2, 0],
+    [4, 0, 0, 0, 0, 0, 8, 0, 0],
+    [0, 8, 3, 2, 0, 1, 5, 9, 0],
+    [0, 0, 1, 0, 0, 0, 0, 0, 2],
+    [0, 9, 7, 3, 0, 5, 2, 4, 0],
+    [2, 0, 0, 0, 0, 9, 0, 5, 6],
+    [0, 0, 0, 1, 0, 0, 9, 7, 0],
+]
+
+function beginGame(selectedGrid: number[][]) {
+
+
+
+let row0 = new GridGrouping(0, "row", selectedGrid)
+let row1 = new GridGrouping(1, "row", selectedGrid)
+let row2 = new GridGrouping(2, "row", selectedGrid)
+let row3 = new GridGrouping(3, "row", selectedGrid)
+let row4 = new GridGrouping(4, "row", selectedGrid)
+let row5 = new GridGrouping(5, "row", selectedGrid)
+let row6 = new GridGrouping(6, "row", selectedGrid)
+let row7 = new GridGrouping(7, "row", selectedGrid)
+let row8 = new GridGrouping(8, "row", selectedGrid)
+
+let col0 = new GridGrouping(0, "col", selectedGrid)
+let col1 = new GridGrouping(1, "col", selectedGrid)
+let col2 = new GridGrouping(2, "col", selectedGrid)
+let col3 = new GridGrouping(3, "col", selectedGrid)
+let col4 = new GridGrouping(4, "col", selectedGrid)
+let col5 = new GridGrouping(5, "col", selectedGrid)
+let col6 = new GridGrouping(6, "col", selectedGrid)
+let col7 = new GridGrouping(7, "col", selectedGrid)
+let col8 = new GridGrouping(8, "col", selectedGrid)
+
+let box0 = new GridGrouping(0, "box", selectedGrid)
+let box1 = new GridGrouping(1, "box", selectedGrid)
+let box2 = new GridGrouping(2, "box", selectedGrid)
+let box3 = new GridGrouping(3, "box", selectedGrid)
+let box4 = new GridGrouping(4, "box", selectedGrid)
+let box5 = new GridGrouping(5, "box", selectedGrid)
+let box6 = new GridGrouping(6, "box", selectedGrid)
+let box7 = new GridGrouping(7, "box", selectedGrid)
+let box8 = new GridGrouping(8, "box", selectedGrid)
 
 
 
@@ -70,7 +111,7 @@ const rows = [row0, row1, row2, row3, row4, row5, row6, row7, row8]
 const cols = [col0, col1, col2, col3, col4, col5, col6, col7, col8]
 const boxs = [box0, box1, box2, box3, box4, box5, box6, box7, box8]
 
-
+const groupingTypes: GridGrouping[][] = [rows, cols, boxs]
    
 let coorRelations: Object = {
     '0,0': [ row0, col0, box0 ],
@@ -79,7 +120,7 @@ let coorRelations: Object = {
     '0,3': [ row0, col3, box1 ],
     '0,4': [ row0, col4, box1 ],
     '0,5': [ row0, col5, box1 ],
-    '0,6': [ row0, col6, box1 ],
+    '0,6': [ row0, col6, box2 ],
     '0,7': [ row0, col7, box2 ],
     '0,8': [ row0, col8, box2 ],
     '1,0': [ row1, col0, box0 ],
@@ -88,7 +129,7 @@ let coorRelations: Object = {
     '1,3': [ row1, col3, box1 ],
     '1,4': [ row1, col4, box1 ],
     '1,5': [ row1, col5, box1 ],
-    '1,6': [ row1, col6, box1 ],
+    '1,6': [ row1, col6, box2 ],
     '1,7': [ row1, col7, box2 ],
     '1,8': [ row1, col8, box2 ],
     '2,0': [ row2, col0, box0 ],
@@ -97,16 +138,16 @@ let coorRelations: Object = {
     '2,3': [ row2, col3, box1 ],
     '2,4': [ row2, col4, box1 ],
     '2,5': [ row2, col5, box1 ],
-    '2,6': [ row2, col6, box1 ],
+    '2,6': [ row2, col6, box2 ],
     '2,7': [ row2, col7, box2 ],
     '2,8': [ row2, col8, box2 ],
     '3,0': [ row3, col0, box3 ],
     '3,1': [ row3, col1, box3 ],
     '3,2': [ row3, col2, box3 ],
-    '3,3': [ row3, col3, box1 ],
-    '3,4': [ row3, col4, box1 ],
-    '3,5': [ row3, col5, box1 ],
-    '3,6': [ row3, col6, box1 ],
+    '3,3': [ row3, col3, box4 ],
+    '3,4': [ row3, col4, box4 ],
+    '3,5': [ row3, col5, box4 ],
+    '3,6': [ row3, col6, box5 ],
     '3,7': [ row3, col7, box5 ],
     '3,8': [ row3, col8, box5 ],
     '4,0': [ row4, col0, box3 ],
@@ -158,7 +199,7 @@ let coorRelations: Object = {
 
 
 
-// call row, columns, and boxs "indicie groupings"
+
 
 //can go row by row
 //can go column by column
@@ -178,7 +219,14 @@ let coorRelations: Object = {
 
 // let holdSpace = []
 
-
+// for(let groupingType of groupingTypes) {
+//     for(let grouping of groupingType) {
+//         let numNeeded = grouping.numbersNeeded
+//         for (let num of numNeeded) {
+//             checkGroupingForNumber(row0, num)
+//         }
+//     }
+// }
 
 // forEach(rows, columns, box4s)
         //forEach(row)
@@ -195,23 +243,20 @@ let coorRelations: Object = {
                         //spaceAvailable.pop(space)
                         //numbersAbvailable.pop(getIndex(number))
 
+    //check is grid finished
+    //check is grid stuck
 
-function checkEightOutOfNine(grouping: GridGrouping) {
-    if (grouping.spaceCoor.length == 1 && grouping.numbersNeeded.length == 1) {
-        gridAndPop(grouping.spaceCoor[0], grouping.numbersNeeded[0])
-   }
 
-}
 
-function gridAndPop(coor: String, number: number) {
-    let row = parseInt(coor.split(",")[0])
-    let col = parseInt(coor.split(",")[1])
-     grid[row][col] = number
-     for(let relation of coorRelations[`${coor}`]) {
-        relation.spaceCoorAvail.pop(relation.spaceCoorAvail.getIndex(coor))
-        relation.numbersNeeded.pop(relation.numbersNeeded.getIndex(number))
-    }
-}
+// function gridAndPop(coor: String, number: number) {
+//     let row = parseInt(coor.split(",")[0])
+//     let col = parseInt(coor.split(",")[1])
+//      selectedGrid[row][col] = number
+//      for(let relation of coorRelations[`${coor}`]) {
+//         relation.spaceCoorAvail.pop(relation.spaceCoorAvail.getIndex(coor))
+//         relation.numbersNeeded.pop(relation.numbersNeeded.getIndex(number))
+//     }
+// }
 
 
 let spaceIsAvailbleForNumberBooleansList: String[] = []
@@ -232,10 +277,20 @@ function spaceCoorAvailArrayExcludingBingoCoor(arr: String[], bingoCoorToRemove:
     return arr.filter(item => item != bingoCoorToRemove)
 }
 
+function adjustRelations(relationList: GridGrouping[], number: number, bingoCoor: String) {
+    for(let relation of relationList) {
+
+        relation.numbersFulfilled.push(number)
+
+        relation.numbersNeeded = numbersNeededArrayExcludingNumber(relation.numbersNeeded, number)
+
+        relation.spaceCoorAvail = spaceCoorAvailArrayExcludingBingoCoor(relation.spaceCoorAvail, bingoCoor)
+    }
+}
 
 //take number, check all spaces in that row
 function checkGroupingForNumber(grouping: GridGrouping, number: number) {
-    console.log(grouping)
+    console.log(`checking ${grouping.name} for ${number}`)
   
     for(let space of grouping.spaceCoorAvail) {
         checkSpaceForNumber(space, number)
@@ -245,36 +300,39 @@ function checkGroupingForNumber(grouping: GridGrouping, number: number) {
 
     if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
         //fill space with that number, yay!
-        let bingoCoor = spaceIsAvailbleForNumberBooleansList[0]
-        let coordinateA = parseInt(bingoCoor.split(",")[0])
-        let coordinateB = parseInt(bingoCoor.split(",")[1])
-        grid[coordinateA][coordinateB] = number
-        console.log(`grouping: ${grouping.name} fulfills space: ${bingoCoor} with number: ${number}`)
+        bingoFoundForFullScan = true
+        const bingoCoor = spaceIsAvailbleForNumberBooleansList[0]
+
+        fulfillGridWithBingoCoor(bingoCoor, number)
+
+        console.log(`fullScan technique: ${grouping.name} fulfills space: ${bingoCoor} with number: ${number}`)
         // console.log(grid)
 
         const relationList = coorRelations[`${bingoCoor}`]
 
-        for(let relation of relationList) {
+        adjustRelations(relationList, number, bingoCoor)
 
-            relation.numbersFulfilled.push(number)
+        // for(let relation of relationList) {
 
-            relation.numbersNeeded = numbersNeededArrayExcludingNumber(relation.numbersNeeded, number)
+        //     relation.numbersFulfilled.push(number)
 
-            relation.spaceCoorAvail = spaceCoorAvailArrayExcludingBingoCoor(relation.spaceCoorAvail, bingoCoor)
-        }
+        //     relation.numbersNeeded = numbersNeededArrayExcludingNumber(relation.numbersNeeded, number)
+
+        //     relation.spaceCoorAvail = spaceCoorAvailArrayExcludingBingoCoor(relation.spaceCoorAvail, bingoCoor)
+        // }
 
         spaceIsAvailbleForNumberBooleansList = []
     } else {
-        console.log(`grouping: ${grouping.name}, is inconclusive for number: ${number}`)
+        console.log(`${grouping.name}, is inconclusive for number: ${number}`)
         spaceIsAvailbleForNumberBooleansList = []
     }
-    console.log(grouping)
+    // console.log(grouping)
 }
 
 
 function checkSpaceForNumber(coor: String, number: number) {
-    console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
-    console.log(`checking coor: ${coor} for number: ${number}`)
+    // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+    // console.log(`checking coor: ${coor} for number: ${number}`)
     const relationList = coorRelations[`${coor}`]
     // console.log(relationList)
     let canPushCoor: boolean = true
@@ -286,32 +344,149 @@ function checkSpaceForNumber(coor: String, number: number) {
 
     if(canPushCoor) {
         spaceIsAvailbleForNumberBooleansList.push(coor)
-        console.log("pushed", coor)
+        // console.log("pushed", coor)
     }
 
     return
 }
 
-    console.log(grid)
-    let numNeeded = row0.numbersNeeded
-    let spaceCoorAvail = row0.spaceCoorAvail
-    // console.log(numNeeded)
-    // console.log(spaceCoorAvail)
-    for (let num of numNeeded) {
-        checkGroupingForNumber(row0, num)
+    // console.log(grid)
+    // let numNeeded = row0.numbersNeeded
+    // // console.log(numNeeded)
+    // // console.log(spaceCoorAvail)
+    // for (let num of numNeeded) {
+    //     checkGroupingForNumber(row0, num)
+    // }
+
+    // numNeeded = row0.numbersNeeded
+    // for (let num of numNeeded) {
+    //     checkGroupingForNumber(row0, num)
+    // }
+
+let gridLock = false
+let bingoFoundForFullScan = false
+let bingoFoundForEightOfNine = false
+
+
+function checkEightOfNine() {
+    bingoFoundForEightOfNine = false
+    for(let groupingType of groupingTypes) {
+        for(let grouping of groupingType) {
+           if (grouping.spaceCoorAvail.length == 1 && grouping.numbersNeeded.length == 1) {
+                const bingoCoor = grouping.spaceCoorAvail[0]
+                const relationList = coorRelations[`${bingoCoor}`]
+                const number = grouping.numbersNeeded[0]
+                adjustRelations(relationList, number, bingoCoor)
+
+
+                fulfillGridWithBingoCoor(bingoCoor, number)
+
+                console.log(`eightOfNine technique: ${grouping.name} fulfills space: ${bingoCoor} with number: ${number}`)
+                bingoFoundForEightOfNine = true
+           }
+        }
     }
+    // shouldReRun()
+}
 
-    numNeeded = row0.numbersNeeded
-    for (let num of numNeeded) {
-        checkGroupingForNumber(row0, num)
+function fulfillGridWithBingoCoor(bingoCoor: String, number: number) {
+    let coordinateA = parseInt(bingoCoor.split(",")[0])
+    let coordinateB = parseInt(bingoCoor.split(",")[1])
+    selectedGrid[coordinateA][coordinateB] = number
+}
+
+// function checkEightOutOfNddine(grouping: GridGrouping) {
+//     if (grouping.spaceCoor.length == 1 && grouping.numbersNeeded.length == 1) {
+//         adjustRelations
+//         gridAndPop(grouping.spaceCoor[0], grouping.numbersNeeded[0])
+//    }
+//    return
+
+// }
+
+function fullScan() {
+    bingoFoundForFullScan = false
+    for(let groupingType of groupingTypes) {
+        for(let grouping of groupingType) {
+            let numNeeded = grouping.numbersNeeded
+            for (let num of numNeeded) {
+                checkGroupingForNumber(grouping, num)
+            }
+        }
     }
+    // shouldReRun()
+}
+
+// function shouldReRun() {
+//     if (bingoFoundForFullScan) {
+//         console.log("RERUN STARTED")
+//         fullScan()
+//     } else {
+//         gridLock = true
 
 
-    console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
-    console.log(grid)
+//         console.log("gridlock")
+//     }
+// }
+
+
+
+ 
+    // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+    fullScan()
+    console.log("grid", selectedGrid)
+    checkEightOfNine()
+    console.log("grid", selectedGrid)
 
 
 // checkSpaceForNumber("0", 1)
 
 // checkGroupingForNumber(row0, 1)
 // console.log(grid2)
+
+function fascilitate() {
+    while(!gridLock) {
+        // do {
+            fullScan()
+        // }
+        // while(bingoFoundForFullScan)
+        if(!bingoFoundForFullScan) {
+            checkEightOfNine()
+            if(bingoFoundForEightOfNine) {
+                fullScan()
+            } else {
+                gridLock = true
+                console.log("GRIDLOCK")
+                return
+            }
+        } 
+    
+        // do {
+        //     checkEightOfNine()
+        // } while(bingoFoundForEightOfNine)
+    
+        // if(!bingoFoundForFullScan && !bingoFoundForEightOfNine) {
+        //     gridLock = true
+        //     console.log("GRIDLOCK")
+        //     return
+        // }
+    }
+   
+}
+
+// fascilitate()
+
+}
+
+beginGame(otherGrid)
+
+
+
+
+//run full scan
+//if number found, run full scan again
+//if  no numbers found, run checkEightOfNine
+//if number found, run full scan
+//if no number found, gridlock
+
+

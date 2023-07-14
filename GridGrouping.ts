@@ -84,7 +84,7 @@ export default class GridGrouping {
             case "coor":
                 let spaceCoor: String[] = []
                     for(let i=0; i<9; i++) {
-                        spaceCoor.push(`${i}, ${groupingNum}`)
+                        spaceCoor.push(`${i},${groupingNum}`)
                     }
                 return spaceCoor
 

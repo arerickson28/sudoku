@@ -69,7 +69,7 @@ var GridGrouping = /** @class */ (function () {
             case "coor":
                 var spaceCoor = [];
                 for (var i = 0; i < 9; i++) {
-                    spaceCoor.push("".concat(i, ", ").concat(groupingNum));
+                    spaceCoor.push("".concat(i, ",").concat(groupingNum));
                 }
                 return spaceCoor;
             default:
