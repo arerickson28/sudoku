@@ -17,7 +17,7 @@ let testGrid: number[][] = [
 ]
 
 let grid: number[][] = [
-    [0, 2, 3, 4, 5, 6, 7, 8, 9],
+    [0, 0, 3, 4, 5, 6, 7, 8, 9],
     [4, 5, 6, 0, 0, 0, 0, 0, 0],
     [7, 8, 9, 0, 0, 0, 0, 0, 0],
     [2, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -215,62 +215,100 @@ function gridAndPop(coor: String, number: number) {
 
 
 let spaceIsAvailbleForNumberBooleansList: String[] = []
-console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+// console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
 
 
 
+function getDistincts(arr: String[]) {
+    return arr.filter((item,
+        index) => arr.indexOf(item) === index);
+}
 
+function numbersNeededArrayExcludingNumber(arr: number[], numberToRemove: number) {
+    return arr.filter(item => item != numberToRemove)
+}
+
+function spaceCoorAvailArrayExcludingBingoCoor(arr: String[], bingoCoorToRemove: String) {
+    return arr.filter(item => item != bingoCoorToRemove)
+}
 
 
 //take number, check all spaces in that row
 function checkGroupingForNumber(grouping: GridGrouping, number: number) {
-    console.log(`grouping: ${grouping.name}`)
+    console.log(grouping)
   
     for(let space of grouping.spaceCoorAvail) {
         checkSpaceForNumber(space, number)
     }
 
-    function getDistincts(arr: String[]) {
-        return arr.filter((item,
-            index) => arr.indexOf(item) === index);
-    }
+    console.log("spaceIsAvailForNumberBooleanListDISTINCT", getDistincts(spaceIsAvailbleForNumberBooleansList))
 
     if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
         //fill space with that number, yay!
-        console.log(`grouping: ${grouping.name} fulfills space: ${spaceIsAvailbleForNumberBooleansList[0]} with number: ${number}`)
+        let bingoCoor = spaceIsAvailbleForNumberBooleansList[0]
+        let coordinateA = parseInt(bingoCoor.split(",")[0])
+        let coordinateB = parseInt(bingoCoor.split(",")[1])
+        grid[coordinateA][coordinateB] = number
+        console.log(`grouping: ${grouping.name} fulfills space: ${bingoCoor} with number: ${number}`)
+        // console.log(grid)
+
+        const relationList = coorRelations[`${bingoCoor}`]
+
+        for(let relation of relationList) {
+
+            relation.numbersFulfilled.push(number)
+
+            relation.numbersNeeded = numbersNeededArrayExcludingNumber(relation.numbersNeeded, number)
+
+            relation.spaceCoorAvail = spaceCoorAvailArrayExcludingBingoCoor(relation.spaceCoorAvail, bingoCoor)
+        }
+
+        spaceIsAvailbleForNumberBooleansList = []
     } else {
         console.log(`grouping: ${grouping.name}, is inconclusive for number: ${number}`)
+        spaceIsAvailbleForNumberBooleansList = []
     }
+    console.log(grouping)
 }
 
 
 function checkSpaceForNumber(coor: String, number: number) {
+    console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
     console.log(`checking coor: ${coor} for number: ${number}`)
     const relationList = coorRelations[`${coor}`]
-    console.log(relationList)
-    spaceIsAvailbleForNumberBooleansList = []
-
+    // console.log(relationList)
+    let canPushCoor: boolean = true
     for(let relation of relationList) {
-        if (!relation.numbersFulfilled.includes(number)) {
-            spaceIsAvailbleForNumberBooleansList.push(coor)
-            console.log("pushed", coor)
-        }
+        if (relation.numbersFulfilled.includes(number)) {
+            canPushCoor = false
+        } 
+    }
+
+    if(canPushCoor) {
+        spaceIsAvailbleForNumberBooleansList.push(coor)
+        console.log("pushed", coor)
     }
 
     return
 }
 
-
+    console.log(grid)
     let numNeeded = row0.numbersNeeded
     let spaceCoorAvail = row0.spaceCoorAvail
-    console.log(numNeeded)
-    console.log(spaceCoorAvail)
+    // console.log(numNeeded)
+    // console.log(spaceCoorAvail)
+    for (let num of numNeeded) {
+        checkGroupingForNumber(row0, num)
+    }
+
+    numNeeded = row0.numbersNeeded
     for (let num of numNeeded) {
         checkGroupingForNumber(row0, num)
     }
 
 
     console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+    console.log(grid)
 
 
 // checkSpaceForNumber("0", 1)

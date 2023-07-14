@@ -13,7 +13,7 @@ var testGrid = [
     [9, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 var grid = [
-    [0, 2, 3, 4, 5, 6, 7, 8, 9],
+    [0, 0, 3, 4, 5, 6, 7, 8, 9],
     [4, 5, 6, 0, 0, 0, 0, 0, 0],
     [7, 8, 9, 0, 0, 0, 0, 0, 0],
     [2, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -181,48 +181,81 @@ function gridAndPop(coor, number) {
     }
 }
 var spaceIsAvailbleForNumberBooleansList = [];
-console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList);
+// console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+function getDistincts(arr) {
+    return arr.filter(function (item, index) { return arr.indexOf(item) === index; });
+}
+function numbersNeededArrayExcludingNumber(arr, numberToRemove) {
+    return arr.filter(function (item) { return item != numberToRemove; });
+}
+function spaceCoorAvailArrayExcludingBingoCoor(arr, bingoCoorToRemove) {
+    return arr.filter(function (item) { return item != bingoCoorToRemove; });
+}
 //take number, check all spaces in that row
 function checkGroupingForNumber(grouping, number) {
-    console.log("grouping: ".concat(grouping.name));
+    console.log(grouping);
     for (var _i = 0, _a = grouping.spaceCoorAvail; _i < _a.length; _i++) {
         var space = _a[_i];
         checkSpaceForNumber(space, number);
     }
-    function getDistincts(arr) {
-        return arr.filter(function (item, index) { return arr.indexOf(item) === index; });
-    }
+    console.log("spaceIsAvailForNumberBooleanListDISTINCT", getDistincts(spaceIsAvailbleForNumberBooleansList));
     if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
         //fill space with that number, yay!
-        console.log("grouping: ".concat(grouping.name, " fulfills space: ").concat(spaceIsAvailbleForNumberBooleansList[0], " with number: ").concat(number));
+        var bingoCoor = spaceIsAvailbleForNumberBooleansList[0];
+        var coordinateA = parseInt(bingoCoor.split(",")[0]);
+        var coordinateB = parseInt(bingoCoor.split(",")[1]);
+        grid[coordinateA][coordinateB] = number;
+        console.log("grouping: ".concat(grouping.name, " fulfills space: ").concat(bingoCoor, " with number: ").concat(number));
+        // console.log(grid)
+        var relationList = coorRelations["".concat(bingoCoor)];
+        for (var _b = 0, relationList_1 = relationList; _b < relationList_1.length; _b++) {
+            var relation = relationList_1[_b];
+            relation.numbersFulfilled.push(number);
+            relation.numbersNeeded = numbersNeededArrayExcludingNumber(relation.numbersNeeded, number);
+            relation.spaceCoorAvail = spaceCoorAvailArrayExcludingBingoCoor(relation.spaceCoorAvail, bingoCoor);
+        }
+        spaceIsAvailbleForNumberBooleansList = [];
     }
     else {
         console.log("grouping: ".concat(grouping.name, ", is inconclusive for number: ").concat(number));
+        spaceIsAvailbleForNumberBooleansList = [];
     }
+    console.log(grouping);
 }
 function checkSpaceForNumber(coor, number) {
+    console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList);
     console.log("checking coor: ".concat(coor, " for number: ").concat(number));
     var relationList = coorRelations["".concat(coor)];
-    console.log(relationList);
-    spaceIsAvailbleForNumberBooleansList = [];
-    for (var _i = 0, relationList_1 = relationList; _i < relationList_1.length; _i++) {
-        var relation = relationList_1[_i];
-        if (!relation.numbersFulfilled.includes(number)) {
-            spaceIsAvailbleForNumberBooleansList.push(coor);
-            console.log("pushed", coor);
+    // console.log(relationList)
+    var canPushCoor = true;
+    for (var _i = 0, relationList_2 = relationList; _i < relationList_2.length; _i++) {
+        var relation = relationList_2[_i];
+        if (relation.numbersFulfilled.includes(number)) {
+            canPushCoor = false;
         }
+    }
+    if (canPushCoor) {
+        spaceIsAvailbleForNumberBooleansList.push(coor);
+        console.log("pushed", coor);
     }
     return;
 }
+console.log(grid);
 var numNeeded = row0.numbersNeeded;
 var spaceCoorAvail = row0.spaceCoorAvail;
-console.log(numNeeded);
-console.log(spaceCoorAvail);
+// console.log(numNeeded)
+// console.log(spaceCoorAvail)
 for (var _i = 0, numNeeded_1 = numNeeded; _i < numNeeded_1.length; _i++) {
     var num = numNeeded_1[_i];
     checkGroupingForNumber(row0, num);
 }
+numNeeded = row0.numbersNeeded;
+for (var _a = 0, numNeeded_2 = numNeeded; _a < numNeeded_2.length; _a++) {
+    var num = numNeeded_2[_a];
+    checkGroupingForNumber(row0, num);
+}
 console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList);
+console.log(grid);
 // checkSpaceForNumber("0", 1)
 // checkGroupingForNumber(row0, 1)
 // console.log(grid2)
