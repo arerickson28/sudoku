@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var GridGrouping = /** @class */ (function () {
     function GridGrouping(groupingNum, groupingType, grid) {
         this.name = groupingType + groupingNum;
+        this.groupingType = groupingType;
         this.spaceCoor = this.getSpaces("coor", groupingNum, groupingType, grid);
         this.spaceCoorAvail = this.getSpaceCoorAvail(this.spaceCoor, grid);
         this.spaceValues = this.getSpaces("values", groupingNum, groupingType, grid);

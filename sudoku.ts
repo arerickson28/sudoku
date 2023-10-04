@@ -1,6 +1,7 @@
 
-import { ScriptSnapshot } from "typescript"
+import { LanguageService, ScriptSnapshot } from "typescript"
 import GridGrouping from "./GridGrouping"
+import LaneGrouping from "./LaneGrouping"
 
 
 
@@ -100,6 +101,156 @@ let box6 = new GridGrouping(6, "box", selectedGrid)
 let box7 = new GridGrouping(7, "box", selectedGrid)
 let box8 = new GridGrouping(8, "box", selectedGrid)
 
+// // row lanes
+// let row0A = row0.spaceCoor.slice(0, 3)
+// let row0B = row0.spaceCoor.slice(3, 6)
+// let row0C = row0.spaceCoor.slice(6, 9)
+
+// let row1A = row1.spaceCoor.slice(0, 3)
+// let row1B = row1.spaceCoor.slice(3, 6)
+// let row1C = row1.spaceCoor.slice(6, 9)
+
+// let row2A = row2.spaceCoor.slice(0, 3)
+// let row2B = row2.spaceCoor.slice(3, 6)
+// let row2C = row2.spaceCoor.slice(6, 9)
+
+// let row3A = row3.spaceCoor.slice(0, 3)
+// let row3B = row3.spaceCoor.slice(3, 6)
+// let row3C = row3.spaceCoor.slice(6, 9)
+
+// let row4A = row4.spaceCoor.slice(0, 3)
+// let row4B = row4.spaceCoor.slice(3, 6)
+// let row4C = row4.spaceCoor.slice(6, 9)
+
+// let row5A = row5.spaceCoor.slice(0, 3)
+// let row5B = row5.spaceCoor.slice(3, 6)
+// let row5C = row5.spaceCoor.slice(6, 9)
+
+// let row6A = row6.spaceCoor.slice(0, 3)
+// let row6B = row6.spaceCoor.slice(3, 6)
+// let row6C = row6.spaceCoor.slice(6, 9)
+
+// let row7A = row7.spaceCoor.slice(0, 3)
+// let row7B = row7.spaceCoor.slice(3, 6)
+// let row7C = row7.spaceCoor.slice(6, 9)
+
+// let row8A = row8.spaceCoor.slice(0, 3)
+// let row8B = row8.spaceCoor.slice(3, 6)
+// let row8C = row8.spaceCoor.slice(6, 9)
+
+
+// //col lanes
+// let col0A = col0.spaceCoor.slice(0, 3)
+// let col0B = col0.spaceCoor.slice(3, 6)
+// let col0C = col0.spaceCoor.slice(6, 9)
+
+// let col1A = col1.spaceCoor.slice(0, 3)
+// let col1B = col1.spaceCoor.slice(3, 6)
+// let col1C = col1.spaceCoor.slice(6, 9)
+
+// let col2A = col2.spaceCoor.slice(0, 3)
+// let col2B = col2.spaceCoor.slice(3, 6)
+// let col2C = col2.spaceCoor.slice(6, 9)
+
+// let col3A = col3.spaceCoor.slice(0, 3)
+// let col3B = col3.spaceCoor.slice(3, 6)
+// let col3C = col3.spaceCoor.slice(6, 9)
+
+// let col4A = col4.spaceCoor.slice(0, 3)
+// let col4B = col4.spaceCoor.slice(3, 6)
+// let col4C = col4.spaceCoor.slice(6, 9)
+
+// let col5A = col5.spaceCoor.slice(0, 3)
+// let col5B = col5.spaceCoor.slice(3, 6)
+// let col5C = col5.spaceCoor.slice(6, 9)
+
+// let col6A = col6.spaceCoor.slice(0, 3)
+// let col6B = col6.spaceCoor.slice(3, 6)
+// let col6C = col6.spaceCoor.slice(6, 9)
+
+// let col7A = col7.spaceCoor.slice(0, 3)
+// let col7B = col7.spaceCoor.slice(3, 6)
+// let col7C = col7.spaceCoor.slice(6, 9)
+
+// let col8A = col8.spaceCoor.slice(0, 3)
+// let col8B = col8.spaceCoor.slice(3, 6)
+// let col8C = col8.spaceCoor.slice(6, 9)
+
+
+// row lanes
+let row0A = new LaneGrouping(row0, "A")
+let row0B = new LaneGrouping(row0, "B")
+let row0C = new LaneGrouping(row0, "C")
+
+let row1A = new LaneGrouping(row1, "A")
+let row1B = new LaneGrouping(row1, "B")
+let row1C = new LaneGrouping(row1, "C")
+
+let row2A = new LaneGrouping(row2, "A")
+let row2B = new LaneGrouping(row2, "B")
+let row2C = new LaneGrouping(row2, "C")
+
+let row3A = new LaneGrouping(row3, "A")
+let row3B = new LaneGrouping(row3, "B")
+let row3C = new LaneGrouping(row3, "C")
+
+let row4A = new LaneGrouping(row4, "A")
+let row4B = new LaneGrouping(row4, "B")
+let row4C = new LaneGrouping(row4, "C")
+
+let row5A = new LaneGrouping(row5, "A")
+let row5B = new LaneGrouping(row5, "B")
+let row5C = new LaneGrouping(row5, "C")
+
+let row6A = new LaneGrouping(row6, "A")
+let row6B = new LaneGrouping(row6, "B")
+let row6C = new LaneGrouping(row6, "C")
+
+let row7A = new LaneGrouping(row7, "A")
+let row7B = new LaneGrouping(row7, "B")
+let row7C = new LaneGrouping(row7, "C")
+
+let row8A = new LaneGrouping(row8, "A")
+let row8B = new LaneGrouping(row8, "B")
+let row8C = new LaneGrouping(row8, "C")
+
+
+//col lanes
+let col0A = new LaneGrouping(col0, "A")
+let col0B = new LaneGrouping(col0, "B")
+let col0C = new LaneGrouping(col0, "C")
+
+let col1A = new LaneGrouping(col1, "A")
+let col1B = new LaneGrouping(col1, "B")
+let col1C = new LaneGrouping(col1, "C")
+
+let col2A = new LaneGrouping(col2, "A")
+let col2B = new LaneGrouping(col2, "B")
+let col2C = new LaneGrouping(col2, "C")
+
+let col3A = new LaneGrouping(col3, "A")
+let col3B = new LaneGrouping(col3, "B")
+let col3C = new LaneGrouping(col3, "C")
+
+let col4A = new LaneGrouping(col4, "A")
+let col4B = new LaneGrouping(col4, "B")
+let col4C = new LaneGrouping(col4, "C")
+
+let col5A = new LaneGrouping(col5, "A")
+let col5B = new LaneGrouping(col5, "B")
+let col5C = new LaneGrouping(col5, "C")
+
+let col6A = new LaneGrouping(col6, "A")
+let col6B = new LaneGrouping(col6, "B")
+let col6C = new LaneGrouping(col6, "C")
+
+let col7A = new LaneGrouping(col7, "A")
+let col7B = new LaneGrouping(col7, "B")
+let col7C = new LaneGrouping(col7, "C")
+
+let col8A = new LaneGrouping(col8, "A")
+let col8B = new LaneGrouping(col8, "B")
+let col8C = new LaneGrouping(col8, "C")
 
 
 
@@ -113,6 +264,29 @@ const boxs = [box0, box1, box2, box3, box4, box5, box6, box7, box8]
 
 const groupingTypes: GridGrouping[][] = [rows, cols, boxs]
    
+
+let laneRelations: Object = {
+    'row0': [row0A, row0B, row0C],
+    'row1': [row1A, row1B, row1C],
+    'row2': [row2A, row2B, row2C],
+    'row3': [row3A, row3B, row3C],
+    'row4': [row4A, row4B, row4C],
+    'row5': [row5A, row5B, row5C],
+    'row6': [row6A, row6B, row6C],
+    'row7': [row7A, row7B, row7C],
+    'row8': [row8A, row8B, row8C],
+    'col0': [col0A, col0B, col0C],
+    'col1': [col1A, col1B, col1C],
+    'col2': [col2A, col2B, col2C],
+    'col3': [col3A, col3B, col3C],
+    'col4': [col4A, col4B, col4C],
+    'col5': [col5A, col5B, col5C],
+    'col6': [col6A, col6B, col6C],
+    'col7': [col7A, col7B, col7C],
+    'col8': [col8A, col8B, col8C],
+}
+
+
 let coorRelations: Object = {
     '0,0': [ row0, col0, box0 ],
     '0,1': [ row0, col1, box0 ],
@@ -296,6 +470,7 @@ function checkGroupingForNumber(grouping: GridGrouping, number: number) {
         checkSpaceForNumber(space, number)
     }
 
+    console.log("spaceIsAvailableForNumberBooleanList", spaceIsAvailbleForNumberBooleansList)
     console.log("spaceIsAvailForNumberBooleanListDISTINCT", getDistincts(spaceIsAvailbleForNumberBooleansList))
 
     if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
@@ -326,21 +501,58 @@ function checkGroupingForNumber(grouping: GridGrouping, number: number) {
         console.log(`${grouping.name}, is inconclusive for number: ${number}`)
         spaceIsAvailbleForNumberBooleansList = []
     }
-    // console.log(grouping)
+    
+    // CHECK IF NUM CAN BE ADDED TO A LANE
+    if (grouping.groupingType == "box" && (spaceIsAvailbleForNumberBooleansList.length == 2 || spaceIsAvailbleForNumberBooleansList.length == 3)) {
+        //get lane for those two coor
+           //if all coors have same row (first digit) then get all lanes of type row
+                //find lane of type row that has those coor
+            // ELSE IF all coors have same col (second digit) then get all lanes of type col
+
+        //(can also filter by lane type A, B, or C)
+
+        //put number in that lane.numsInLane
+        console.log("POSSIBLE LANE PLACEMENT")
+    }
 }
 
 
 function checkSpaceForNumber(coor: String, number: number) {
     // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
     // console.log(`checking coor: ${coor} for number: ${number}`)
-    const relationList = coorRelations[`${coor}`]
+    const relationList: GridGrouping[] = coorRelations[`${coor}`]
+
+
+    //-----
+    // Gathering lanes to check
+    //lane cannot include current coor
+    // let laneList: LaneGrouping[] = []
+
+    // for (let relation of relationList) {
+    //     for(let lane of laneRelations[`${relation.name}`]) {
+    //         if (!lane.spaceCoor.includes(`${coor}`)) {
+    //             laneList.push(lane)
+    //         }
+    //     }
+    // }
+
+    //-----
     // console.log(relationList)
     let canPushCoor: boolean = true
-    for(let relation of relationList) {
+    for (let relation of relationList) {
         if (relation.numbersFulfilled.includes(number)) {
             canPushCoor = false
         } 
     }
+
+    //--------
+    //Check lanes
+    // for (let lane of laneList) {
+    //     if (lane.numsInLane.includes(number)) {
+    //         canPushCoor = false
+    //     }
+    // }
+    //--------
 
     if(canPushCoor) {
         spaceIsAvailbleForNumberBooleansList.push(coor)
@@ -433,6 +645,7 @@ function fullScan() {
 
  
     // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+    console.log("grid", selectedGrid)
     fullScan()
     console.log("grid", selectedGrid)
     checkEightOfNine()
@@ -490,3 +703,7 @@ beginGame(otherGrid)
 //if no number found, gridlock
 
 
+// Can only add to lanes when checking boxes...I think
+// Case for a lane spanding two boxes??
+
+//What's with the spaceIsAbvailableForNumberBooleanListDISTINCT....why distinct?

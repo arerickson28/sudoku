@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var GridGrouping_1 = require("./GridGrouping");
+var LaneGrouping_1 = require("./LaneGrouping");
 var testGrid = [
     [0, 0, 0, 5, 1, 0, 8, 0, 3],
     [0, 0, 5, 0, 6, 4, 0, 9, 0],
@@ -84,10 +85,142 @@ function beginGame(selectedGrid) {
     var box6 = new GridGrouping_1.default(6, "box", selectedGrid);
     var box7 = new GridGrouping_1.default(7, "box", selectedGrid);
     var box8 = new GridGrouping_1.default(8, "box", selectedGrid);
+    // // row lanes
+    // let row0A = row0.spaceCoor.slice(0, 3)
+    // let row0B = row0.spaceCoor.slice(3, 6)
+    // let row0C = row0.spaceCoor.slice(6, 9)
+    // let row1A = row1.spaceCoor.slice(0, 3)
+    // let row1B = row1.spaceCoor.slice(3, 6)
+    // let row1C = row1.spaceCoor.slice(6, 9)
+    // let row2A = row2.spaceCoor.slice(0, 3)
+    // let row2B = row2.spaceCoor.slice(3, 6)
+    // let row2C = row2.spaceCoor.slice(6, 9)
+    // let row3A = row3.spaceCoor.slice(0, 3)
+    // let row3B = row3.spaceCoor.slice(3, 6)
+    // let row3C = row3.spaceCoor.slice(6, 9)
+    // let row4A = row4.spaceCoor.slice(0, 3)
+    // let row4B = row4.spaceCoor.slice(3, 6)
+    // let row4C = row4.spaceCoor.slice(6, 9)
+    // let row5A = row5.spaceCoor.slice(0, 3)
+    // let row5B = row5.spaceCoor.slice(3, 6)
+    // let row5C = row5.spaceCoor.slice(6, 9)
+    // let row6A = row6.spaceCoor.slice(0, 3)
+    // let row6B = row6.spaceCoor.slice(3, 6)
+    // let row6C = row6.spaceCoor.slice(6, 9)
+    // let row7A = row7.spaceCoor.slice(0, 3)
+    // let row7B = row7.spaceCoor.slice(3, 6)
+    // let row7C = row7.spaceCoor.slice(6, 9)
+    // let row8A = row8.spaceCoor.slice(0, 3)
+    // let row8B = row8.spaceCoor.slice(3, 6)
+    // let row8C = row8.spaceCoor.slice(6, 9)
+    // //col lanes
+    // let col0A = col0.spaceCoor.slice(0, 3)
+    // let col0B = col0.spaceCoor.slice(3, 6)
+    // let col0C = col0.spaceCoor.slice(6, 9)
+    // let col1A = col1.spaceCoor.slice(0, 3)
+    // let col1B = col1.spaceCoor.slice(3, 6)
+    // let col1C = col1.spaceCoor.slice(6, 9)
+    // let col2A = col2.spaceCoor.slice(0, 3)
+    // let col2B = col2.spaceCoor.slice(3, 6)
+    // let col2C = col2.spaceCoor.slice(6, 9)
+    // let col3A = col3.spaceCoor.slice(0, 3)
+    // let col3B = col3.spaceCoor.slice(3, 6)
+    // let col3C = col3.spaceCoor.slice(6, 9)
+    // let col4A = col4.spaceCoor.slice(0, 3)
+    // let col4B = col4.spaceCoor.slice(3, 6)
+    // let col4C = col4.spaceCoor.slice(6, 9)
+    // let col5A = col5.spaceCoor.slice(0, 3)
+    // let col5B = col5.spaceCoor.slice(3, 6)
+    // let col5C = col5.spaceCoor.slice(6, 9)
+    // let col6A = col6.spaceCoor.slice(0, 3)
+    // let col6B = col6.spaceCoor.slice(3, 6)
+    // let col6C = col6.spaceCoor.slice(6, 9)
+    // let col7A = col7.spaceCoor.slice(0, 3)
+    // let col7B = col7.spaceCoor.slice(3, 6)
+    // let col7C = col7.spaceCoor.slice(6, 9)
+    // let col8A = col8.spaceCoor.slice(0, 3)
+    // let col8B = col8.spaceCoor.slice(3, 6)
+    // let col8C = col8.spaceCoor.slice(6, 9)
+    // row lanes
+    var row0A = new LaneGrouping_1.default(row0, "A");
+    var row0B = new LaneGrouping_1.default(row0, "B");
+    var row0C = new LaneGrouping_1.default(row0, "C");
+    var row1A = new LaneGrouping_1.default(row1, "A");
+    var row1B = new LaneGrouping_1.default(row1, "B");
+    var row1C = new LaneGrouping_1.default(row1, "C");
+    var row2A = new LaneGrouping_1.default(row2, "A");
+    var row2B = new LaneGrouping_1.default(row2, "B");
+    var row2C = new LaneGrouping_1.default(row2, "C");
+    var row3A = new LaneGrouping_1.default(row3, "A");
+    var row3B = new LaneGrouping_1.default(row3, "B");
+    var row3C = new LaneGrouping_1.default(row3, "C");
+    var row4A = new LaneGrouping_1.default(row4, "A");
+    var row4B = new LaneGrouping_1.default(row4, "B");
+    var row4C = new LaneGrouping_1.default(row4, "C");
+    var row5A = new LaneGrouping_1.default(row5, "A");
+    var row5B = new LaneGrouping_1.default(row5, "B");
+    var row5C = new LaneGrouping_1.default(row5, "C");
+    var row6A = new LaneGrouping_1.default(row6, "A");
+    var row6B = new LaneGrouping_1.default(row6, "B");
+    var row6C = new LaneGrouping_1.default(row6, "C");
+    var row7A = new LaneGrouping_1.default(row7, "A");
+    var row7B = new LaneGrouping_1.default(row7, "B");
+    var row7C = new LaneGrouping_1.default(row7, "C");
+    var row8A = new LaneGrouping_1.default(row8, "A");
+    var row8B = new LaneGrouping_1.default(row8, "B");
+    var row8C = new LaneGrouping_1.default(row8, "C");
+    //col lanes
+    var col0A = new LaneGrouping_1.default(col0, "A");
+    var col0B = new LaneGrouping_1.default(col0, "B");
+    var col0C = new LaneGrouping_1.default(col0, "C");
+    var col1A = new LaneGrouping_1.default(col1, "A");
+    var col1B = new LaneGrouping_1.default(col1, "B");
+    var col1C = new LaneGrouping_1.default(col1, "C");
+    var col2A = new LaneGrouping_1.default(col2, "A");
+    var col2B = new LaneGrouping_1.default(col2, "B");
+    var col2C = new LaneGrouping_1.default(col2, "C");
+    var col3A = new LaneGrouping_1.default(col3, "A");
+    var col3B = new LaneGrouping_1.default(col3, "B");
+    var col3C = new LaneGrouping_1.default(col3, "C");
+    var col4A = new LaneGrouping_1.default(col4, "A");
+    var col4B = new LaneGrouping_1.default(col4, "B");
+    var col4C = new LaneGrouping_1.default(col4, "C");
+    var col5A = new LaneGrouping_1.default(col5, "A");
+    var col5B = new LaneGrouping_1.default(col5, "B");
+    var col5C = new LaneGrouping_1.default(col5, "C");
+    var col6A = new LaneGrouping_1.default(col6, "A");
+    var col6B = new LaneGrouping_1.default(col6, "B");
+    var col6C = new LaneGrouping_1.default(col6, "C");
+    var col7A = new LaneGrouping_1.default(col7, "A");
+    var col7B = new LaneGrouping_1.default(col7, "B");
+    var col7C = new LaneGrouping_1.default(col7, "C");
+    var col8A = new LaneGrouping_1.default(col8, "A");
+    var col8B = new LaneGrouping_1.default(col8, "B");
+    var col8C = new LaneGrouping_1.default(col8, "C");
     var rows = [row0, row1, row2, row3, row4, row5, row6, row7, row8];
     var cols = [col0, col1, col2, col3, col4, col5, col6, col7, col8];
     var boxs = [box0, box1, box2, box3, box4, box5, box6, box7, box8];
     var groupingTypes = [rows, cols, boxs];
+    var laneRelations = {
+        'row0': [row0A, row0B, row0C],
+        'row1': [row1A, row1B, row1C],
+        'row2': [row2A, row2B, row2C],
+        'row3': [row3A, row3B, row3C],
+        'row4': [row4A, row4B, row4C],
+        'row5': [row5A, row5B, row5C],
+        'row6': [row6A, row6B, row6C],
+        'row7': [row7A, row7B, row7C],
+        'row8': [row8A, row8B, row8C],
+        'col0': [col0A, col0B, col0C],
+        'col1': [col1A, col1B, col1C],
+        'col2': [col2A, col2B, col2C],
+        'col3': [col3A, col3B, col3C],
+        'col4': [col4A, col4B, col4C],
+        'col5': [col5A, col5B, col5C],
+        'col6': [col6A, col6B, col6C],
+        'col7': [col7A, col7B, col7C],
+        'col8': [col8A, col8B, col8C],
+    };
     var coorRelations = {
         '0,0': [row0, col0, box0],
         '0,1': [row0, col1, box0],
@@ -244,6 +377,7 @@ function beginGame(selectedGrid) {
             var space = _a[_i];
             checkSpaceForNumber(space, number);
         }
+        console.log("spaceIsAvailableForNumberBooleanList", spaceIsAvailbleForNumberBooleansList);
         console.log("spaceIsAvailForNumberBooleanListDISTINCT", getDistincts(spaceIsAvailbleForNumberBooleansList));
         if (getDistincts(spaceIsAvailbleForNumberBooleansList).length == 1) {
             //fill space with that number, yay!
@@ -265,12 +399,33 @@ function beginGame(selectedGrid) {
             console.log("".concat(grouping.name, ", is inconclusive for number: ").concat(number));
             spaceIsAvailbleForNumberBooleansList = [];
         }
-        // console.log(grouping)
+        // CHECK IF NUM CAN BE ADDED TO A LANE
+        if (grouping.groupingType == "box" && (spaceIsAvailbleForNumberBooleansList.length == 2 || spaceIsAvailbleForNumberBooleansList.length == 3)) {
+            //get lane for those two coor
+            //if all coors have same row (first digit) then get all lanes of type row
+            //find lane of type row that has those coor
+            // ELSE IF all coors have same col (second digit) then get all lanes of type col
+            //(can also filter by lane type A, B, or C)
+            //put number in that lane.numsInLane
+            console.log("POSSIBLE LANE PLACEMENT");
+        }
     }
     function checkSpaceForNumber(coor, number) {
         // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
         // console.log(`checking coor: ${coor} for number: ${number}`)
         var relationList = coorRelations["".concat(coor)];
+        //-----
+        // Gathering lanes to check
+        //lane cannot include current coor
+        // let laneList: LaneGrouping[] = []
+        // for (let relation of relationList) {
+        //     for(let lane of laneRelations[`${relation.name}`]) {
+        //         if (!lane.spaceCoor.includes(`${coor}`)) {
+        //             laneList.push(lane)
+        //         }
+        //     }
+        // }
+        //-----
         // console.log(relationList)
         var canPushCoor = true;
         for (var _i = 0, relationList_2 = relationList; _i < relationList_2.length; _i++) {
@@ -279,6 +434,14 @@ function beginGame(selectedGrid) {
                 canPushCoor = false;
             }
         }
+        //--------
+        //Check lanes
+        // for (let lane of laneList) {
+        //     if (lane.numsInLane.includes(number)) {
+        //         canPushCoor = false
+        //     }
+        // }
+        //--------
         if (canPushCoor) {
             spaceIsAvailbleForNumberBooleansList.push(coor);
             // console.log("pushed", coor)
@@ -355,6 +518,7 @@ function beginGame(selectedGrid) {
     //     }
     // }
     // console.log("spaceIsAvailableForNumberBooleansList", spaceIsAvailbleForNumberBooleansList)
+    console.log("grid", selectedGrid);
     fullScan();
     console.log("grid", selectedGrid);
     checkEightOfNine();
@@ -397,3 +561,6 @@ beginGame(otherGrid);
 //if  no numbers found, run checkEightOfNine
 //if number found, run full scan
 //if no number found, gridlock
+// Can only add to lanes when checking boxes...I think
+// Case for a lane spanding two boxes??
+//What's with the spaceIsAbvailableForNumberBooleanListDISTINCT....why distinct?
