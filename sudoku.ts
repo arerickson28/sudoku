@@ -1,7 +1,7 @@
-
 import GridGrouping from "./GridGrouping"
 
 export default class Sudoku {
+    // Sukoku puzzle has nine rows
     row0 : GridGrouping
     row1 : GridGrouping
     row2 : GridGrouping
@@ -11,7 +11,7 @@ export default class Sudoku {
     row6 : GridGrouping
     row7 : GridGrouping
     row8 : GridGrouping
-
+    // Sukoku puzzle has nine columns
     col0 : GridGrouping 
     col1 : GridGrouping 
     col2 : GridGrouping 
@@ -21,7 +21,7 @@ export default class Sudoku {
     col6 : GridGrouping 
     col7 : GridGrouping 
     col8 : GridGrouping
-
+    // Sukoku puzzle has nine boxes
     box0 : GridGrouping 
     box1 : GridGrouping 
     box2 : GridGrouping 
@@ -32,23 +32,34 @@ export default class Sudoku {
     box7 : GridGrouping 
     box8 : GridGrouping 
 
-
+    // Sudoku puzzle to be able to consider list of all rows, columns, or boxes
     rows : GridGrouping[]
     cols : GridGrouping[]
     boxs : GridGrouping[]
 
+    // Sudoku puzzle to be able to consider each of the three types of groupings (rows, cols, boxes)
     groupingTypes: GridGrouping[][]
 
+    // Sudoku puzzle to be able to relate a space to the row, column, and box that contain it
     coorRelations : Object
 
+    // When considering a space for a number,
+    // Sudoku puzzle to be able to keep a list of possible numbers for that space
     spaceIsAvailbleForNumberBooleansList : String[] = []
 
+    // GridLock is a word I'm using to mean "stuck", cannot solve puzzle (not yet implemented)
     gridLock : boolean = false
-    bingoFoundForFullScan : boolean = false 
+
+    // Variable to track if the groupings technique has been exhausted yet or not
+    bingoFoundForFullScan : boolean = false
+
+    // Variable to track if the check-eight-of-nine technique has been exhausted yet (not yet implmented)
     bingoFoundForEightOfNine : boolean = false
 
+    // the running state of the Sudoku puzzle
     rawGrid : number[][]
 
+    // upon instantiating a Sudoku puzzle, assemble the relations
     constructor(selectedGrid: number[][]) {
         this.row0 = new GridGrouping(0, "row", selectedGrid)
         this.row1 = new GridGrouping(1, "row", selectedGrid)

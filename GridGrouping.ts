@@ -1,25 +1,21 @@
-// class GridGrouping {
-//     constructor(name, spaces, spacesAvailable, numbersNeeded, numbersFulfilled) {
-//         this.name = name
-//         this.spaces = spaces
-//         this.spacesAvailable = spacesAvailable
-//         this.numbersNeeded = numbersNeeded
-//         this.numbersFulfilled = numbersFulfilled
-//     }
-// }
 
-// import { group } from "console";
-
-
+// class blueprint to define a row, column, or box and it's state of completion
 export default class GridGrouping {
 
+    // name refers to, for example, first row or fourth box or second column etc.
     name: string;
+    // on the Sudoku grid, which spaces does this grouping contain?
     spaceCoor: String[]
+    // which space coordinates are empty in this grouping?
     spaceCoorAvail: String[]
+    // actual contents of the grouping
     spaceValues: number[]
+    // what numbers does this grouping still need? Goal is to drive this to empty
     numbersNeeded: number[]
+    // what numbers does this grouping already have? Goal is to fill this with 1-9
     numbersFulfilled: number[]
 
+    // upon defining a grouping, assemble the above values based on the nature of the grouping and the given sudoku puzzle
     constructor(groupingNum: number, groupingType: string, grid: number[][]) {
         this.name = groupingType + groupingNum
         this.spaceCoor = this.getSpaces("coor", groupingNum, groupingType, grid)
@@ -34,7 +30,6 @@ export default class GridGrouping {
         switch(groupingType) {
             case "row":
                 return this.getRowSpaces(valuesOrCoor, groupingNum, grid)
-                
             case "col":
                 return this.getColSpaces(valuesOrCoor, groupingNum, grid)
             case "box":
@@ -42,14 +37,6 @@ export default class GridGrouping {
             default:
                 return []
         }
-
-        // if(groupingType == "row") {
-        //     return grid[groupingNum]
-        // } else if (groupingType == "col") {
-        //     return getColSpaces(groupingNum, grid)
-        // } else if (groupingType == "box") {
-        //     return getBoxSpaces(groupingNum, grid)
-        // }
     }
 
     getRowSpaces(valuesOrCoor: String, groupingNum: number, grid: number[][]): any[] {
@@ -392,7 +379,7 @@ export default class GridGrouping {
     getNumbersNeeded(spaces: number[]) {
         let numbersNeeded: number[] = []
         for (let i = 1; i<10; i++) {
-            if(   !spaces.includes(i)   ){
+            if (!spaces.includes(i)){
                 numbersNeeded.push(i)
             }
         }
@@ -409,4 +396,3 @@ export default class GridGrouping {
         return numbersFulfilled
     }
 }
-
